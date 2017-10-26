@@ -11,4 +11,6 @@ package gitmergedemo;
  */
 public class MergeFil1 {
     //I'm working on this complicated file
+    
+    //Sigrun
 }
