@@ -16,21 +16,7 @@ public class Repository {
  private Login login = new Login();
     
     public Repository(){
-//        ResultSet rs = null;
-//        PreparedStatement stmt = null;
-//        con = null;
-//        try{
-//            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/GymBookingSystem/Settings.properties",
-//              "Akinyi",
-//              "java2msql2018");
-//            p.load(new FileInputStream("jdbc:mysql://localhost:3306/GymBookingSystem/Settings.properties"));
-//            Class.forName("com.mysql.jdbc.Driver");
-//        }
-//         catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        
-             
+       
     }
     public void getMembersTraining(String memberName){
         ResultSet rs = null;
@@ -42,9 +28,7 @@ public class Repository {
         try { con = DriverManager.getConnection(login.connectionString,
                                                 login.name,
                                                 login.password);
-//        try {con = DriverManager.getConnection("jdbc:mysql://localhost:3306/GymBookingSystem",
-//                "Akinyi",
-//                "java2msql2018");
+
       PreparedStatement memberStmt = con.prepareStatement("select member.name as 'Member',"
       + " exerciseType.name as 'Exercise',\n" + "groupSession.sessionID as 'Group Session ID',"
       + " session.scheduled as Date from groupSession\n" +
@@ -90,9 +74,7 @@ public class Repository {
         try { con = DriverManager.getConnection(login.connectionString,
                                                 login.name,
                                                 login.password);
-//        try {con = DriverManager.getConnection("jdbc:mysql://localhost:3306/GymBookingSystem",
-//                "Akinyi",
-//                "java2msql2018");
+
       PreparedStatement memberStmt = con.prepareStatement("select  "
               + "member.name as 'Member', "
               + "individualSession.sessionID as 'Individual Session ID', "
@@ -138,22 +120,19 @@ public class Repository {
         try { con = DriverManager.getConnection(login.connectionString,
                                                 login.name,
                                                 login.password);
-//        try {con = DriverManager.getConnection("jdbc:mysql://localhost:3306/GymBookingSystem",
-//                "Akinyi",
-//                "java2msql2018");
-      PreparedStatement memberStmt = con.prepareStatement("select Member, SessionID from(\n" +
-"select member.name as 'Member', individualSession.SessionID as 'SessionID', individualSession.attendance, \n" +
-"session.scheduled as Date from individualSession\n" +
+
+      PreparedStatement memberStmt = con.prepareStatement("select  member.name as 'Member', "
+              + "individualSession.ID as 'Individual Session ID' from individualSession\n" +
 "inner join member on member.ID = individualSession.memberID\n" +
-"inner join session on individualSession.sessionID = session.ID\n" +
-") as ccc where Member like ? ");
+"inner join session on individualSession.sessionID= session.ID\n" +
+"where member.name like ? ");
             
             memberStmt.setString(1, memberName);
             rs = memberStmt.executeQuery();
             
             while (rs.next()) {
                 membername = rs.getString("Member");
-                sessionID = rs.getInt("SessionID");
+                sessionID = rs.getInt("Individual Session ID");
                 System.out.println(sessionID+ "," + membername);
             }
         }
@@ -181,9 +160,7 @@ public class Repository {
         try { con = DriverManager.getConnection(login.connectionString,
                                                 login.name,
                                                 login.password);
-//        try {con = DriverManager.getConnection("jdbc:mysql://localhost:3306/GymBookingSystem",
-//                "Akinyi",
-//                "java2msql2018");
+
      PreparedStatement memberStmt = con.prepareStatement("select  "
              + "member.name as 'Member', exerciseType.name as 'Exercise',\n" +
 "groupSession.sessionID as 'Group Session ID', session.scheduled as Date, "
@@ -237,10 +214,6 @@ public class Repository {
 "inner join session on session.ID = individualSession.sessionID\n" +
 "inner join member on individualSession.memberID = member.ID\n" +
 "inner join trainer on trainer.ID = session.trainerID where member.name like ? ");
-//        PreparedStatement insertNoteStmt = con.prepareStatement(
-//                        "insert into note (comment) values (?)");
-//        PreparedStatement updateNoteStmt = con.prepareStatement(
-//                        "update note set comment = ? where note.memberID = member.ID");
             
             memberStmt.setString(1, memberName);
             rs = memberStmt.executeQuery();
@@ -254,9 +227,6 @@ public class Repository {
                     "Comments: " +  comment );
              
           
-            
-            // rs = updateNoteStmt.executeQuery();
-             
         }
         catch (SQLException e){
             e.printStackTrace();
@@ -277,8 +247,7 @@ public class Repository {
         Connection con = null;
         comment = ""; String trainer = "";
         individualsessionID = 0;
-        //int rows = -1;
-        
+        int rows = -1;        
         try {con = DriverManager.getConnection(login.connectionString,
                                                 login.name,
                                                 login.password);
@@ -288,17 +257,9 @@ public class Repository {
             memberStmt.setString(1, comment);
             memberStmt.setInt(2, individualsessionID);
             //rows = memberStmt.executeUpdate();
-           
-             rs = memberStmt.executeQuery();
-            while (rs.next()) {
-                //trainer = rs.getString("Trainer");
-               // membername = rs.getString("Member");
-               individualsessionID = rs.getInt("individualsessionID");
-                comment = rs.getString("comment");
-            }
-            System.out.println("Comments: " +  comment  + "IndividualSessionID" + individualsessionID);
-             
-            // rs = updateNoteStmt.executeQuery();
+            memberStmt.executeUpdate();
+            memberStmt.close();
+         
              
         }
         catch (SQLException e){
@@ -315,7 +276,60 @@ public class Repository {
         }
     //  return rows;
     }
-     
+     public int checkIfNoteExists(int individualsessionID){
+        String query = "select count(note.ID) as Count from note where individualSessionID = ?";
+
+        ResultSet rs = null; 
+        ResultSet rs2 = null;
+        Connection con = null;
+        String comment = "", theCommentAndNr = ""; individualsessionID = 0;
+        int rows = -1;
+        
+        try {con = DriverManager.getConnection(login.connectionString,
+                                                login.name,
+                                                login.password);
+//        PreparedStatement noteStmt = con.prepareStatement("select note.comment as 'FullComment', "
+//                + "note.individualSessionID as IndividualSessionID, \n" +
+//"trainer.name as Trainer, individualSession.attendance as Attendance, session.scheduled from note\n" +
+//"inner join individualSession on individualSession.ID = note.individualSessionID\n" +
+//"inner join member on member.ID = individualSession.memberID\n" +
+//"inner join session on session.ID = individualSession.sessionID\n" +
+//"inner join trainer on trainer.ID = session.trainerID\n" +
+//"where individualSession.ID = ?");
+        
+         PreparedStatement noteStmt2 = con.prepareStatement(query);
+           // noteStmt.setInt(1,individualsessionID);
+            noteStmt2.setInt(1,individualsessionID);
+//            rs = noteStmt.executeQuery();
+//            System.out.println("utanför ");
+//            while (rs.next()) {
+//                
+//            }
+            
+            rs2 = noteStmt2.executeQuery();
+            
+            while(rs2.next()) {
+                if (rs2.getInt("Count") > 0) {
+                    individualsessionID = 0 ;
+                }
+            }
+//            System.out.println("Comment: " +  comment + "IndividualSessionID " + individualsessionID );
+//           theCommentAndNr = comment; 
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            if (con != null) {
+                try {
+                    System.out.print("Transaction is being rolled back");
+                    con.rollback();
+                } 
+                catch(SQLException e2) {
+                    System.out.println(e2.getMessage());
+                }
+            }
+        }
+      return individualsessionID;
+    }
      
      public class FindID {
     

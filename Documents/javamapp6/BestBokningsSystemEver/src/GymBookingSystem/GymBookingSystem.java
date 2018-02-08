@@ -12,20 +12,7 @@ public class GymBookingSystem {
     int individualsessionID =0; String comment = "", snr = "", wholeline = ""; String[] snrAndName;
  GymBookingSystem(){
      scanner = new Scanner(System.in);
-//     String name = "";
-//      
-//      while(true){
-//            name = JOptionPane.showInputDialog("Name of member: ");
-//            name = name.trim();
-//            
-//            if (name.equalsIgnoreCase("name")){
-//                System.exit(0);
-//            }
-//           r.getMembersTraining(name);
-//          // r.getMembersNotes(name);
-//            break;
-//        }
-      // r.getAllMembersTraining(); Kolla detta igen
+
       
     }
  
@@ -61,20 +48,19 @@ public class GymBookingSystem {
              System.out.println("Name of member: ");
              name = scanner.nextLine().trim();
             individualsessionID = r.checkIfMemberHasIndividualTraining(name);
-//             while(scanner.hasNext())
-//             wholeline = scanner.nextLine(); // cannot read the line****
-//             snrAndName = wholeline.split(","); // Splitar raden med komma till två strings
-//             snr = snrAndName[0].trim(); // individualsessionID
-//             individualsessionID = Integer.parseInt(snr);
-//             System.out.println(individualsessionID);
-             if(individualsessionID > 0 ){ 
+
+        if(individualsessionID >0 ){ 
+            int id = r.checkIfNoteExists(individualsessionID);
+          
                System.out.println("Write your comment here: ");
                  comment = scanner.nextLine();
-                r.writeMembersNotes(comment, individualsessionID);
-                 System.out.println("Comment successfully entered into note");
-             }
+                r.writeMembersNotes(comment, id);
+                 System.out.println("Comment successfully entered into note");}
+           else 
+            System.out.println("Member has no individual trainings");
              break;
-     }
+             }
+       
  }
  
  public void login(String trainerName){
