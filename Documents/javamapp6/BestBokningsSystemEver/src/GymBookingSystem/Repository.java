@@ -46,13 +46,13 @@ public class Repository {
 //                "Akinyi",
 //                "java2msql2018");
       PreparedStatement memberStmt = con.prepareStatement("select member.name as 'Member',"
-      + " exercisetype.name as 'Exercise',\n" + "groupsession.sessionID as 'Group Session ID',"
-      + " session.scheduled as Date from groupsession\n" +
-            "inner join booking on booking.groupSessionID = groupsession.ID\n" +
+      + " exerciseType.name as 'Exercise',\n" + "groupSession.sessionID as 'Group Session ID',"
+      + " session.scheduled as Date from groupSession\n" +
+            "inner join booking on booking.groupSessionID = groupSession.ID\n" +
             "inner join member on member.ID = booking.memberID \n" +
-            "inner join session on groupsession.sessionID= session.ID\n" +
-            "inner join exercisetype on exercisetype.ID = "
-            + "groupsession.exerciseTypeID where member.name like ? ");
+            "inner join session on groupSession.sessionID= session.ID\n" +
+            "inner join exerciseType on exerciseType.ID = "
+            + "groupSession.exerciseTypeID where member.name like ? ");
             
             memberStmt.setString(1, memberName);
             rs = memberStmt.executeQuery();
@@ -95,11 +95,11 @@ public class Repository {
 //                "java2msql2018");
       PreparedStatement memberStmt = con.prepareStatement("select  "
               + "member.name as 'Member', "
-              + "individualsession.sessionID as 'Individual Session ID', "
-              + "individualsession.attendance as Attendance, \n" 
-              + "session.scheduled as Date from individualsession\n" +
-"inner join member on member.ID = individualsession.memberID\n" +
-"inner join session on individualsession.sessionID= session.ID\n" +
+              + "individualSession.sessionID as 'Individual Session ID', "
+              + "individualSession.attendance as Attendance, \n" 
+              + "session.scheduled as Date from individualSession\n" +
+"inner join member on member.ID = individualSession.memberID\n" +
+"inner join session on individualSession.sessionID= session.ID\n" +
 "where member.name like ? ");
             
             memberStmt.setString(1, memberName);
@@ -142,10 +142,10 @@ public class Repository {
 //                "Akinyi",
 //                "java2msql2018");
       PreparedStatement memberStmt = con.prepareStatement("select Member, SessionID from(\n" +
-"select member.name as 'Member', individualsession.sessionID as 'SessionID', individualsession.attendance, \n" +
-"session.scheduled as Date from individualsession\n" +
-"inner join member on member.ID = individualsession.memberID\n" +
-"inner join session on individualsession.sessionID = session.ID\n" +
+"select member.name as 'Member', individualSession.SessionID as 'SessionID', individualSession.attendance, \n" +
+"session.scheduled as Date from individualSession\n" +
+"inner join member on member.ID = individualSession.memberID\n" +
+"inner join session on individualSession.sessionID = session.ID\n" +
 ") as ccc where Member like ? ");
             
             memberStmt.setString(1, memberName);
@@ -185,13 +185,13 @@ public class Repository {
 //                "Akinyi",
 //                "java2msql2018");
      PreparedStatement memberStmt = con.prepareStatement("select  "
-             + "member.name as 'Member', exercisetype.name as 'Exercise',\n" +
-"groupsession.sessionID as 'Group Session ID', session.scheduled as Date, "
-             + "booking.attendance as Attendance from groupsession\n" +
-"inner join booking on booking.groupSessionID = groupsession.ID\n" +
+             + "member.name as 'Member', exerciseType.name as 'Exercise',\n" +
+"groupSession.sessionID as 'Group Session ID', session.scheduled as Date, "
+             + "booking.attendance as Attendance from groupSession\n" +
+"inner join booking on booking.groupSessionID = groupSession.ID\n" +
 "inner join member on member.ID = booking.memberID \n" +
-"inner join session on groupsession.sessionID= session.ID\n" +
-"inner join exercisetype on exercisetype.ID = groupsession.exerciseTypeID;");
+"inner join session on groupSession.sessionID= session.ID\n" +
+"inner join exerciseType on exerciseType.ID = groupSession.exerciseTypeID;");
             
             //memberStmt.setString(1, memberName);
             rs = memberStmt.executeQuery();
@@ -233,9 +233,9 @@ public class Repository {
                                                 login.password);
         PreparedStatement memberStmt = con.prepareStatement("select trainer.name as 'Trainer', "
                 + "member.name as 'Member' , comment as 'Comment' from note\n" +
-"inner join individualsession on individualSession.ID = note.individualSessionID\n" +
-"inner join session on session.ID = individualsession.sessionID\n" +
-"inner join member on individualsession.memberID = member.ID\n" +
+"inner join individualSession on individualSession.ID = note.individualSessionID\n" +
+"inner join session on session.ID = individualSession.sessionID\n" +
+"inner join member on individualSession.memberID = member.ID\n" +
 "inner join trainer on trainer.ID = session.trainerID where member.name like ? ");
 //        PreparedStatement insertNoteStmt = con.prepareStatement(
 //                        "insert into note (comment) values (?)");
@@ -272,12 +272,12 @@ public class Repository {
         }
       
     }
-     public int writeMembersNotes(String comment, int individualsessionID){
+     public void writeMembersNotes(String comment, int individualsessionID){
         ResultSet rs = null;
         Connection con = null;
         comment = ""; String trainer = "";
         individualsessionID = 0;
-        int rows = -1;
+        //int rows = -1;
         
         try {con = DriverManager.getConnection(login.connectionString,
                                                 login.name,
@@ -287,15 +287,16 @@ public class Repository {
 
             memberStmt.setString(1, comment);
             memberStmt.setInt(2, individualsessionID);
-            rows = memberStmt.executeUpdate();
-            
-//            while (rs.next()) {
-//                //trainer = rs.getString("Trainer");
-//               // membername = rs.getString("Member");
-//               individualsessionID = rs.getInt("individualsessionID");
-//                comment = rs.getString("comment");
-//            }
-//            System.out.println("Comments: " +  comment  + "IndividualSessionID" + individualsessionID);
+            //rows = memberStmt.executeUpdate();
+           
+             rs = memberStmt.executeQuery();
+            while (rs.next()) {
+                //trainer = rs.getString("Trainer");
+               // membername = rs.getString("Member");
+               individualsessionID = rs.getInt("individualsessionID");
+                comment = rs.getString("comment");
+            }
+            System.out.println("Comments: " +  comment  + "IndividualSessionID" + individualsessionID);
              
             // rs = updateNoteStmt.executeQuery();
              
@@ -312,7 +313,7 @@ public class Repository {
                 }
             }
         }
-      return rows;
+    //  return rows;
     }
      
      
