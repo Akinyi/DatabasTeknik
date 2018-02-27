@@ -11,8 +11,7 @@ public abstract class Uppgift03_15Brickor extends JFrame implements ActionListen
      JPanel js = new JPanel();
      JPanel jb = new JPanel();
      int buttonClicked;
-     JButton[] buttons = new JButton[15];
- private JButton restart = new JButton("Starta om");
+ private JButton restart = new JButton("Shuffle");
  private JButton b1 = new JButton("1");private JButton b2 = new JButton("2");
  private JButton b3 = new JButton("3");private JButton b4 = new JButton("4");
  private JButton b5 = new JButton("5");private JButton b6 = new JButton("6");
@@ -73,12 +72,9 @@ public abstract class Uppgift03_15Brickor extends JFrame implements ActionListen
        for (int i =0; i<100; i++){
        n = generator.nextInt(15)+1;
        // complete this randomised array of JButtons and show the JFrame
-       
           }
     
     }
-      
-      
     public static void main(String[] args) {
       Uppgift03_15Brickor ub = new Uppgift03_15Brickor(){};
     }

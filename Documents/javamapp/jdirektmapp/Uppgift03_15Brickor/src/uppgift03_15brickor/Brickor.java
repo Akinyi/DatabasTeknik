@@ -12,7 +12,6 @@ public class Brickor implements ActionListener{
             }
     // Method för randomly changing position of buttons
     
-
     // Method for finding empty space
             
     // Method for checking if buttons are all in correct position == win!

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Nickstabadet</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <link href="styles/general.css" rel="stylesheet"> 
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    
+    <link href="assets/style/general.css" rel="stylesheet"> 
+</head>
+<body class="pb-5">
+     
+    <header  class= "header"> 
+        <h1>Nickstabadet</h1>
+        <p>Ett soligt sommarbad</p>
+    </header>
+      
+      <nav class="navbar 
+                  navbar-light 
+                  mb-2
+                  navbar-expand-md
+                  text-blue">
+          
+      <button class="navbar-toggler"
+              data-toggle="collapse"
+              data-target="#nicksta-navbar">
+              
+          <span class="navbar-toggler-icon"></span>
+    </button>
+          <div class="navbar-collapse collapse"
+               id="nicksta-navbar">
+              <ul class="navbar-nav">
+              <li class ="nav-item">
+                <a class="nav-link" href="index.html">Hem</a>  
+            </li>
+                  <li class ="nav-item">
+                <a class="nav-link" href="contact.html">Kontakt</a>  
+            </li>
+                  <li class ="nav-item">
+                <a class="nav-link" href="status.html">Väder</a>  
+            </li>
+                  <li class ="nav-item">
+                <a class="nav-link" href="index.html">Tilbaks</a>  
+             </ul>
+          </div>
+      </nav>
+    
+      <hr>
+   <div class="container 
+                   bg-light">
+    <div class="row">
+      <div class="col-12 col-md-9">
+        <article id="LämnaSynpunkter">
+          <header class="card-header">
+            <h3>Lämna dina synpunkter här!</h3>
+          </header>
+             <article class="forms">
+            
+                    <form action="#">
+            <div>
+                <label>Rubrik</label>
+                <input type="text"
+                    placeholder="Rubrik"
+                    maxlength="60"
+                    required>
+            </div>
+                <br>
+            <div>
+                <label>Beskrivning</label>
+                <textarea rows="4" cols="25" maxlength="100">
+
+                </textarea><label>Max 100 tecken</label>
+                
+                </div>                                   
+                    <br>
+                <div>
+       
+            <div>
+                <label>Ärende</label>
+                    <select>
+                        <option>HavsCamping</option>
+                        <option selected>Strand</option>
+                
+                    </select>
+            </div>
+                <br>
+                    <label>Vill du få svar på din synpunkt?</label>
+                <br>
+                    <label for="remember_yes">Ja</label> 
+                    <input name="remember me"
+                   id="remember_yes" type="radio" >
+                    <label for="remember_no">Nej</label>
+                    <input name="remember me"
+                   type="radio" id="remember_no" checked>
+            
+            <div>
+            <label>Email</label>
+            <input type="text"
+                   placeholder="example@email.com"
+                   maxlength="60"
+                   required>
+                <br>
+            <!-- <button type="submit">Skicka..</button> -->
+            <button type="button" class="btn btn-danger">Skicka..</button>
+            </div>
+           
+            </div> 
+        </form>
+        
+        </article>
+        </article>
+        
+       </div>
+    </div>
+</div>
+     <div class="center">
+            <footer>
+                Vill du veta mer? Skicka epost till 
+                <a href="mailto:adress">mailto:adress
+                  
+                </a> 
+                
+            </footer>
+     </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+   </body>
+</html>
+
+<!-- 
+   <article id="main">
+    <main class="mainbackground">
+        <div id="images1">
+        <header class= "header">
+        
+            <h1 class="h1sansserif">Nickstabadet</h1>
+           
+            <p class="thick">Ett soligt sommarbad</p>      
+        </header>
+        </div>
+     
+        <section>
+    <article id="navigation">
+        
+    <nav>
+        <ul>
+            <li> <a href="index.html">Hem</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+            <li><a href="status.html">Väder</a></li>
+            <div class="right">
+            <li><a href="index.html">Tillbaks</a></li>
+            </div>
+         </ul> 
+    </nav>
+      </article> 
+     
+        <article id="LämnaSynpunkter">
+            <h2 class="greentitle">Lämna dina synpunkter här!</h2>
+                <article class="forms">
+            
+                    <form action="#">
+            <div>
+                <label>Rubrik</label>
+                <input type="text"
+                    placeholder="Rubrik"
+                    maxlength="60"
+                    required>
+            </div>
+                <br>
+            <div>
+                <label>Beskrivning</label>
+                <textarea rows="4" cols="25" maxlength="100">
+
+                </textarea><label>Max 100 tecken</label>
+                
+                </div>                                   
+                    <br>
+                <div>
+       
+            <div>
+                <label>Ärende</label>
+                    <select>
+                        <option>HavsCamping</option>
+                        <option selected>Strand</option>
+                
+                    </select>
+            </div>
+                <br>
+                    <label>Vill du få svar på din synpunkt?</label>
+                <br>
+                    <label for="remember_yes">Ja</label> 
+                    <input name="remember me"
+                   id="remember_yes" type="radio" >
+                    <label for="remember_no">Nej</label>
+                    <input name="remember me"
+                   type="radio" id="remember_no" checked>
+            
+            <div>
+            <label>Email</label>
+            <input type="text"
+                   placeholder="example@email.com"
+                   maxlength="60"
+                   required>
+                <br>
+            <button type="submit">Skicka..</button>
+            </div>
+           
+            </div> 
+        </form>
+        
+        </article>
+        </article>
+        
+        <article  class="footer">
+            <div class="center">
+            <footer>
+                <small>Vill du veta mer? Skicka epost till <a href="mailto:adress">mailto:adress</a> <br>
+                </small>
+            </footer>
+            </div>
+        </article> 
+        </section>
+       </main>
+    </article>
+-->
+
+
+
+
+
+

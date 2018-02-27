@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Nickstabadet</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+        <link href="styles/general.css" rel="stylesheet"> 
+    
+    
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">      
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.3/cosmo/bootstrap.min.css">
+        <link href="assets/style/general.css" rel="stylesheet"> 
+</head>
+<body class="pb-5">
+     
+    <header  class= "header
+                     "> 
+        <h1>Nickstabadet</h1>
+        <p>Ett soligt sommarbad</p>
+    </header>
+      
+      <nav class="navbar 
+                  navbar-light 
+                  mb-2
+                  navbar-expand-md
+                  text-blue">
+          
+      <button class="navbar-toggler"
+              data-toggle="collapse"
+              data-target="#nicksta-navbar">
+              
+          <span class="navbar-toggler-icon"></span>
+    </button>
+          <div class="navbar-collapse collapse"
+               id="nicksta-navbar">
+              <ul class="navbar-nav">
+              <li class ="nav-item">
+                <a class="nav-link" href="index.html">Hem</a>  
+            </li>
+                  <li class ="nav-item">
+                <a class="nav-link" href="contact.html">Kontakt</a>  
+            </li>
+                  <li class ="nav-item">
+                <a class="nav-link" href="status.html">Väder</a>  
+            </li>
+                  <li class ="nav-item">
+                <a class="nav-link" href="index.html">Tilbaks</a>  
+             </ul>
+          </div>
+      </nav>
+    
+      <hr>
+<div class="container 
+    bg-light">
+    <div class="row">
+      <div class="col-12 col-md-8">
+          <article id="Tågen">
+      <h2>Åker tågen?</h2>  
+            
+            <label>Jag åker ifrån..</label>
+            <input type="text"
+                   placeholder=""
+                   maxlength="60"
+                   required>
+                <br>
+          <!--  <button type="submit">Skicka..</button>-->
+            <button type="button" class="btn btn-danger">Sök..</button>
+            
+            <form action="#">
+            <div>
+            <div id="tables2">
+              <table class="table table-striped">
+              <thead id= "TågTitel">
+                  
+                <tr>
+                    <th>Nr</th>
+                    <th>Avgår</th>
+                    <th>Ankommer</th>
+                    
+                </tr>
+                     
+             </thead>
+             <tbody>
+                <tr>
+                    <td>42</td>
+                    <td>10:25</td>
+                    <td>11:23</td>
+                   
+                </tr>
+                <tr>
+                    <td>42</td>
+                    <td>12:25</td>
+                    <td>13:23</td>
+                    
+                </tr>
+                 <tr>
+                    <td>42</td>
+                    <td>14:25</td>
+                    <td>15:23</td>
+                 </tr>
+                 
+              </tbody>
+             </table>
+            </div>
+        <br>
+        <p>Inga problem i traffiken</p>
+        <label>Åker från:</label> 
+       </div>
+    </form>
+</article>
+          
+ <article id="Vädret"> 
+     <div class="col-6 col-md-4">
+    
+     <h2>Vädret på Nicksta</h2>
+        <div id="forms">
+        <form>
+            <div>
+             <div id="tables">
+              <table class="table table-striped">
+              <thead id="VäderTitel">
+                <tr>
+                    <th>Klocka</th>
+                    <th>Väder</th>
+                    <th>Värme</th>
+                    <th>Vind </th>
+                </tr>
+             </thead>
+             <tbody>
+                <tr>
+                    <td>09.00</td>
+                    <td>Moln</td>
+                    <td>16<sup>o</sup>C</td>
+                    <td>3m/s</td>
+                </tr>  
+                <tr>
+                    <td>12.00</td>
+                    <td>Sol</td>
+                    <td>18<sup>o</sup>C</td>
+                    <td>4m/s</td>
+                </tr>
+                 <tr>
+                    <td>15.00</td>
+                    <td>Sol</td>
+                       <td>20<sup>o</sup>C</td>
+                    <td>2m/s</td>
+                 </tr>
+                 <tr>
+                    <td>18.00</td>
+                    <td>Regn</td>
+                     <td>19<sup>o</sup>C</td>
+                    <td>3m/s</td>
+                 </tr>
+                 <tr>
+                    <td>21.00</td>
+                    <td>Moln</td>
+                      <td>17<sup>o</sup>C</td>
+                    <td>1m/s</td>
+                 </tr>
+             </tbody>
+           </table>
+          </div>
+        </div> 
+      </form>
+     </div>
+     </div>
+</article>
+            </div>
+        </div> 
+    </div>
+    
+    <div class="center">
+            <footer>
+                Vill du veta mer? Skicka epost till 
+                <a href="mailto:adress">mailto:adress
+                  
+                </a> 
+                
+            </footer>
+     </div>
+    
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+   </body>
+</html>
+
+
+
